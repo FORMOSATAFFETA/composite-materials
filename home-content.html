@@ -3,166 +3,611 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Formosa Taffeta Composite Materials homepage content for carbon fiber fabrics and composite solutions.">
-  <title>FTC Composite Materials - Home Content</title>
+  <meta name="description" content="Formosa Taffeta Composite Materials homepage for carbon fiber fabrics and composite solutions.">
+  <title>FTC Composite Materials - Formosa Taffeta Co., Ltd.</title>
+  
+  <!-- 外部樣式表 (保留你原本引入的 home-content.css) -->
   <link rel="stylesheet" href="css/home-content.css">
+
+  <style>
+    /* ==========================================
+       全站共用色彩與基礎設定
+       ========================================== */
+    :root {
+      --navy: #153f78;
+      --navy-dark: #031a34;
+      --navy-footer: #062a55;
+      --text: #172232;
+      --red: #ef3123;
+      --line: #e7ebef;
+      --footer-line: rgba(255, 255, 255, 0.16);
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f7f9;
+      color: var(--text);
+    }
+
+    /* ==========================================
+       HEADER (導覽列樣式)
+       ========================================== */
+    .site-header {
+      width: 100%;
+      height: 78px;
+      background: var(--white);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+    }
+
+    .header-container {
+      width: min(1180px, calc(100% - 40px));
+      height: 100%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .brand img {
+      width: 275px;
+      height: auto;
+      display: block;
+    }
+
+    .main-nav {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .main-nav > a:not(.quote-btn) {
+      position: relative;
+      height: 78px;
+      display: flex;
+      align-items: center;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .main-nav > a:not(.quote-btn):hover,
+    .main-nav > a.active:not(.quote-btn) {
+      color: var(--navy);
+    }
+
+    .main-nav > a:not(.quote-btn)::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      right: 50%;
+      bottom: 16px;
+      height: 3px;
+      background: var(--red);
+      transition: 0.2s ease;
+    }
+
+    .main-nav > a:not(.quote-btn):hover::after,
+    .main-nav > a.active:not(.quote-btn)::after {
+      left: 0;
+      right: 0;
+    }
+
+    .quote-btn {
+      min-height: 46px;
+      padding: 0 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--red);
+      color: #fff;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 800;
+      border-radius: 4px;
+      box-shadow: 0 8px 20px rgba(239, 49, 35, 0.18);
+      white-space: nowrap;
+    }
+
+    .menu-toggle {
+      display: none;
+      margin-left: auto;
+      border: 0;
+      background: transparent;
+      color: var(--navy);
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 900px) {
+      .site-header { height: 72px; }
+      .header-container { width: calc(100% - 28px); }
+      .brand img { width: 215px; max-width: 70vw; }
+      .menu-toggle { display: block; }
+      .main-nav {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        margin: 0;
+        padding: 10px 20px 20px;
+        background: #fff;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+      }
+      .main-nav.open { display: flex; }
+      .main-nav > a:not(.quote-btn) {
+        height: auto;
+        padding: 14px 4px;
+        border-bottom: 1px solid #eee;
+      }
+      .main-nav > a:not(.quote-btn)::after { display: none; }
+      .quote-btn { margin-top: 14px; }
+    }
+
+    /* ==========================================
+       FOOTER (頁尾樣式)
+       ========================================== */
+    .site-footer {
+      background: linear-gradient(90deg, rgba(3, 26, 52, 0.98) 0%, rgba(6, 42, 85, 0.98) 68%, rgba(3, 26, 52, 0.95) 100%);
+      color: #ffffff;
+    }
+
+    .footer-main {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 46px 0 34px;
+      display: grid;
+      grid-template-columns: 1.45fr 0.75fr 0.85fr 1.1fr;
+      gap: 36px;
+      align-items: start;
+    }
+
+    .footer-brand img {
+      width: 265px;
+      max-width: 100%;
+      display: block;
+      margin-bottom: 18px;
+      filter: brightness(0) invert(1);
+    }
+
+    .footer-brand .tagline {
+      color: #d7e2ec;
+      font-size: 14px;
+      line-height: 1.7;
+      margin: 0 0 18px;
+      max-width: 360px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .contact-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      color: #e5ecf2;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .contact-icon {
+      width: 20px;
+      color: var(--red);
+      font-weight: 700;
+      flex: 0 0 auto;
+    }
+
+    .footer-col h3 {
+      margin: 0 0 16px;
+      font-size: 18px;
+      color: #fff;
+    }
+
+    .footer-col h3::after {
+      content: "";
+      display: block;
+      width: 40px;
+      height: 3px;
+      background: var(--red);
+      margin-top: 10px;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      color: #e4ebf2;
+      text-decoration: none;
+      font-size: 14px;
+      transition: 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+      transform: translateX(2px);
+    }
+
+    .footer-cta {
+      padding-left: 10px;
+    }
+
+    .footer-cta .eyebrow {
+      margin: 0 0 8px;
+      color: #dce5ee;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .footer-cta .headline {
+      margin: 0 0 18px;
+      font-size: 22px;
+      line-height: 1.35;
+      font-weight: 800;
+    }
+
+    .footer-cta .quote-btn {
+      min-height: 52px;
+      padding: 0 22px;
+      font-size: 16px;
+      box-shadow: 0 8px 20px rgba(239, 49, 35, 0.2);
+    }
+
+    .footer-cta .quote-btn:hover {
+      filter: brightness(0.95);
+      transform: translateY(-1px);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--footer-line);
+    }
+
+    .footer-bottom-inner {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      color: #c9d4df;
+      font-size: 13px;
+    }
+
+    .footer-bottom a {
+      color: #c9d4df;
+      text-decoration: none;
+    }
+
+    .footer-bottom a:hover {
+      color: #fff;
+    }
+
+    @media (max-width: 980px) {
+      .footer-main {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .footer-main {
+        width: calc(100% - 28px);
+        grid-template-columns: 1fr;
+        gap: 28px;
+        padding: 34px 0 28px;
+      }
+      .footer-brand img {
+        width: 225px;
+        filter: none;
+      }
+      .footer-cta {
+        padding-left: 0;
+      }
+      .footer-bottom-inner {
+        width: calc(100% - 28px);
+        min-height: 88px;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 8px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<!--
-  This file is ONLY the middle homepage content.
-  Put your shared Header above <main> and your shared Footer below </main>.
--->
+  <!-- ========================================================
+       1. HEADER (頂部選單)
+       ======================================================== -->
+  <header class="site-header">
+    <div class="header-container">
+      <a class="brand" href="index.html" aria-label="Formosa Taffeta Composite Materials home">
+        <img src="images/logo.png" alt="Formosa Taffeta Co., Ltd. Composite Materials">
+      </a>
 
-<main class="home-content">
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+        ☰
+      </button>
 
-  <section class="home-hero">
-    <div class="home-container hero-inner">
-      <div class="hero-copy">
-        <p class="eyebrow">ADVANCED COMPOSITE MATERIALS</p>
-        <h1>Stronger Materials<br>A Lighter Tomorrow</h1>
-        <p class="hero-lead">High-performance carbon fiber fabrics and prepregs for demanding composite applications.</p>
-        <div class="hero-actions">
-          <a class="home-btn home-btn-primary" href="#products">Our Products <span>→</span></a>
-          <a class="home-btn home-btn-ghost" href="#contact-cta">Contact Us</a>
+      <nav class="main-nav" aria-label="Primary navigation">
+        <a class="active" href="index.html">Home</a>
+        <a href="#about">About</a>
+        <a href="#products">Products</a>
+        <a href="#applications">Applications</a>
+        <a href="downloads.html">Downloads</a>
+        <a href="#contact-cta">Contact</a>
+        <a class="quote-btn" href="#contact-cta">Request a Quote</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========================================================
+       2. MAIN CONTENT (首頁主要內容)
+       ======================================================== -->
+  <main class="home-content">
+
+    <!-- 主視覺 Banner -->
+    <section class="home-hero">
+      <div class="home-container hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">ADVANCED COMPOSITE MATERIALS</p>
+          <h1>Stronger Materials<br>A Lighter Tomorrow</h1>
+          <p class="hero-lead">High-performance carbon fiber fabrics and prepregs for demanding composite applications.</p>
+          <div class="hero-actions">
+            <a class="home-btn home-btn-primary" href="#products">Our Products <span>→</span></a>
+            <a class="home-btn home-btn-ghost" href="#contact-cta">Contact Us</a>
+          </div>
+        </div>
+        <p class="hero-caption">CARBON FIBER<br>FOR A BETTER TOMORROW</p>
+      </div>
+    </section>
+
+    <!-- 特色條 -->
+    <section class="benefit-strip" aria-label="Key benefits">
+      <div class="home-container benefit-grid">
+        <article class="benefit-item">
+          <span class="benefit-icon">◆</span>
+          <div><h3>High Strength</h3><p>Superior mechanical properties</p></div>
+        </article>
+        <article class="benefit-item">
+          <span class="benefit-icon">◒</span>
+          <div><h3>Lightweight</h3><p>Optimized for performance</p></div>
+        </article>
+        <article class="benefit-item">
+          <span class="benefit-icon">⚙</span>
+          <div><h3>Versatile Applications</h3><p>From industry to everyday life</p></div>
+        </article>
+        <article class="benefit-item">
+          <span class="benefit-icon">◇</span>
+          <div><h3>Sustainable Future</h3><p>Materials for a cleaner world</p></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 產品清單區塊 -->
+    <section class="home-section products-section" id="products">
+      <div class="home-container">
+        <div class="section-head">
+          <div>
+            <p class="section-eyebrow">OUR PRODUCTS</p>
+            <h2>Carbon Fiber Solutions</h2>
+          </div>
+          <a class="text-link" href="#products">View All Products <span>→</span></a>
+        </div>
+
+        <div class="product-grid">
+          <article class="product-card">
+            <img src="images/product-2d-woven.jpg" alt="2D woven carbon fiber fabric">
+            <div class="product-copy">
+              <h3>2D Woven Carbon Fabric</h3>
+              <p>Various weaves for diverse applications</p>
+              <a href="2d-woven.html" aria-label="View 2D Woven Carbon Fabric specifications">→</a>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <img src="images/product-ud.jpg" alt="UD carbon fabric">
+            <div class="product-copy">
+              <h3>UD Carbon Fabric</h3>
+              <p>High strength in one direction</p>
+              <a href="ud-fabric.html" aria-label="View UD Carbon Fabric specifications">→</a>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <img src="images/product-prepreg.jpg" alt="Carbon fiber prepreg">
+            <div class="product-copy">
+              <h3>Prepreg</h3>
+              <p>Ready for high-performance composite manufacturing</p>
+              <a href="prepreg.html" aria-label="View Prepreg specifications">→</a>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <img src="images/product-multiaxial.jpg" alt="Multiaxial carbon fiber fabric">
+            <div class="product-copy">
+              <h3>Multiaxial Fabric</h3>
+              <p>Multi-directional reinforcement for complex structures</p>
+              <a href="multiaxial.html" aria-label="View Multiaxial Fabric specifications">→</a>
+            </div>
+          </article>
         </div>
       </div>
-      <p class="hero-caption">CARBON FIBER<br>FOR A BETTER TOMORROW</p>
-    </div>
-  </section>
+    </section>
 
-  <section class="benefit-strip" aria-label="Key benefits">
-    <div class="home-container benefit-grid">
-      <article class="benefit-item">
-        <span class="benefit-icon">◆</span>
-        <div><h3>High Strength</h3><p>Superior mechanical properties</p></div>
-      </article>
-      <article class="benefit-item">
-        <span class="benefit-icon">◒</span>
-        <div><h3>Lightweight</h3><p>Optimized for performance</p></div>
-      </article>
-      <article class="benefit-item">
-        <span class="benefit-icon">⚙</span>
-        <div><h3>Versatile Applications</h3><p>From industry to everyday life</p></div>
-      </article>
-      <article class="benefit-item">
-        <span class="benefit-icon">◇</span>
-        <div><h3>Sustainable Future</h3><p>Materials for a cleaner world</p></div>
-      </article>
-    </div>
-  </section>
+    <!-- 應用領域區塊 -->
+    <section class="applications-band" id="applications">
+      <div class="home-container application-layout">
+        <div class="application-intro">
+          <p class="section-eyebrow">APPLICATIONS</p>
+          <h2>Composites for<br>a Wider World</h2>
+          <a class="text-link" href="applications.html">Learn More <span>→</span></a>
+        </div>
 
-  <section class="home-section products-section" id="products">
-    <div class="home-container">
-      <div class="section-head">
+        <div class="application-grid">
+          <article class="application-card">
+            <img src="images/app-automotive.jpg" alt="Automotive composite application">
+            <span>Automotive</span>
+          </article>
+          <article class="application-card">
+            <img src="images/app-wind-energy.jpg" alt="Wind energy composite application">
+            <span>Wind Energy</span>
+          </article>
+          <article class="application-card">
+            <img src="images/app-marine.jpg" alt="Marine composite application">
+            <span>Marine</span>
+          </article>
+          <article class="application-card">
+            <img src="images/app-aerospace.jpg" alt="Aerospace composite application">
+            <span>Aerospace</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 關於我們區塊 -->
+    <section class="home-section about-section" id="about">
+      <div class="home-container about-grid">
+        <div class="about-image">
+          <img src="images/about-factory.jpg" alt="Formosa Taffeta manufacturing facility">
+        </div>
+
+        <div class="about-copy">
+          <p class="section-eyebrow">ABOUT US</p>
+          <h2>Your Trusted Partner<br>in Composite Materials</h2>
+          <p>Formosa Taffeta Co., Ltd. develops and manufactures carbon fiber fabrics, prepregs and composite materials for industrial applications. Our textile manufacturing experience supports reliable B2B material solutions and customized specifications.</p>
+          <a class="home-btn home-btn-outline" href="about.html">Learn More About Us <span>→</span></a>
+        </div>
+
+        <div class="value-list">
+          <article><strong>Quality</strong><span>Our Commitment</span></article>
+          <article><strong>Innovation</strong><span>Our Drive</span></article>
+          <article><strong>Global Partnership</strong><span>Our Vision</span></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 諮詢 CTA 區塊 -->
+    <section class="contact-cta" id="contact-cta">
+      <div class="home-container cta-inner">
         <div>
-          <p class="section-eyebrow">OUR PRODUCTS</p>
-          <h2>Carbon Fiber Solutions</h2>
+          <h2>Need Technical Assistance?</h2>
+          <p>We are here to help you find the right solution for your application.</p>
         </div>
-        <a class="text-link" href="#products">View All Products <span>→</span></a>
+        <a class="home-btn home-btn-primary" href="contact.html">Request a Quote <span>→</span></a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================
+       3. FOOTER (頁尾區塊)
+       ======================================================== -->
+  <footer class="site-footer">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <img src="images/logo.png" alt="Formosa Taffeta Co., Ltd. Composite Materials">
+        <p class="tagline">
+          Carbon fiber fabrics and composite material solutions for global B2B applications.
+        </p>
+        <div class="contact-list">
+          <div class="contact-row">
+            <span class="contact-icon">⌖</span>
+            <span>No. 317, Shulin Rd., Liuyou 640, Taiwan</span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-icon">☎</span>
+            <span>+886-5-557-7296</span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-icon">✉</span>
+            <span>u133874@ftc.com.tw</span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-icon">◎</span>
+            <span>www.ftc.com.tw</span>
+          </div>
+        </div>
       </div>
 
-      <div class="product-grid">
-        <article class="product-card">
-          <img src="images/product-2d-woven.jpg" alt="2D woven carbon fiber fabric">
-          <div class="product-copy">
-            <h3>2D Woven Carbon Fabric</h3>
-            <p>Various weaves for diverse applications</p>
-            <a href="2d-woven.html" aria-label="View 2D Woven Carbon Fabric specifications">→</a>
-          </div>
-        </article>
+      <div class="footer-col">
+        <h3>Products</h3>
+        <div class="footer-links">
+          <a href="2d-woven.html">2D Woven</a>
+          <a href="ud-fabric.html">UD Fabric</a>
+          <a href="prepreg.html">Prepreg</a>
+          <a href="multiaxial.html">Multiaxial</a>
+        </div>
+      </div>
 
-        <article class="product-card">
-          <img src="images/product-ud.jpg" alt="UD carbon fabric">
-          <div class="product-copy">
-            <h3>UD Carbon Fabric</h3>
-            <p>High strength in one direction</p>
-            <a href="ud-fabric.html" aria-label="View UD Carbon Fabric specifications">→</a>
-          </div>
-        </article>
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <div class="footer-links">
+          <a href="#about">About</a>
+          <a href="#applications">Applications</a>
+          <a href="downloads.html">Downloads</a>
+          <a href="#contact-cta">Contact</a>
+        </div>
+      </div>
 
-        <article class="product-card">
-          <img src="images/product-prepreg.jpg" alt="Carbon fiber prepreg">
-          <div class="product-copy">
-            <h3>Prepreg</h3>
-            <p>Ready for high-performance composite manufacturing</p>
-            <a href="prepreg.html" aria-label="View Prepreg specifications">→</a>
-          </div>
-        </article>
-
-        <article class="product-card">
-          <img src="images/product-multiaxial.jpg" alt="Multiaxial carbon fiber fabric">
-          <div class="product-copy">
-            <h3>Multiaxial Fabric</h3>
-            <p>Multi-directional reinforcement for complex structures</p>
-            <a href="multiaxial.html" aria-label="View Multiaxial Fabric specifications">→</a>
-          </div>
-        </article>
+      <div class="footer-cta">
+        <p class="eyebrow">Stronger Materials</p>
+        <p class="headline">A Brighter Tomorrow</p>
+        <a class="quote-btn" href="#contact-cta">
+          Request a Quote →
+        </a>
       </div>
     </div>
-  </section>
 
-  <section class="applications-band">
-    <div class="home-container application-layout">
-      <div class="application-intro">
-        <p class="section-eyebrow">APPLICATIONS</p>
-        <h2>Composites for<br>a Wider World</h2>
-        <a class="text-link" href="applications.html">Learn More <span>→</span></a>
-      </div>
-
-      <div class="application-grid">
-        <article class="application-card">
-          <img src="images/app-automotive.jpg" alt="Automotive composite application">
-          <span>Automotive</span>
-        </article>
-        <article class="application-card">
-          <img src="images/app-wind-energy.jpg" alt="Wind energy composite application">
-          <span>Wind Energy</span>
-        </article>
-        <article class="application-card">
-          <img src="images/app-marine.jpg" alt="Marine composite application">
-          <span>Marine</span>
-        </article>
-        <article class="application-card">
-          <img src="images/app-aerospace.jpg" alt="Aerospace composite application">
-          <span>Aerospace</span>
-        </article>
+    <div class="footer-bottom">
+      <div class="footer-bottom-inner">
+        <span>© 2026 Formosa Taffeta Co., Ltd. Composite Materials. All rights reserved.</span>
+        <span>
+          <a href="#">Privacy Policy</a>
+          &nbsp; | &nbsp;
+          <a href="#">Terms of Use</a>
+        </span>
       </div>
     </div>
-  </section>
+  </footer>
 
-  <section class="home-section about-section" id="about">
-    <div class="home-container about-grid">
-      <div class="about-image">
-        <img src="images/about-factory.jpg" alt="Formosa Taffeta manufacturing facility">
-      </div>
+  <!-- 手機版漢堡選單互動腳本 -->
+  <script>
+    const menuToggle = document.querySelector(".menu-toggle");
+    const mainNav = document.querySelector(".main-nav");
 
-      <div class="about-copy">
-        <p class="section-eyebrow">ABOUT US</p>
-        <h2>Your Trusted Partner<br>in Composite Materials</h2>
-        <p>Formosa Taffeta Co., Ltd. develops and manufactures carbon fiber fabrics, prepregs and composite materials for industrial applications. Our textile manufacturing experience supports reliable B2B material solutions and customized specifications.</p>
-        <a class="home-btn home-btn-outline" href="about.html">Learn More About Us <span>→</span></a>
-      </div>
-
-      <div class="value-list">
-        <article><strong>Quality</strong><span>Our Commitment</span></article>
-        <article><strong>Innovation</strong><span>Our Drive</span></article>
-        <article><strong>Global Partnership</strong><span>Our Vision</span></article>
-      </div>
-    </div>
-  </section>
-
-  <section class="contact-cta" id="contact-cta">
-    <div class="home-container cta-inner">
-      <div>
-        <h2>Need Technical Assistance?</h2>
-        <p>We are here to help you find the right solution for your application.</p>
-      </div>
-      <a class="home-btn home-btn-primary" href="contact.html">Request a Quote <span>→</span></a>
-    </div>
-  </section>
-
-</main>
+    menuToggle.addEventListener("click", function () {
+      mainNav.classList.toggle("open");
+      const isOpen = mainNav.classList.contains("open");
+      menuToggle.setAttribute("aria-expanded", isOpen);
+    });
+  </script>
 
 </body>
 </html>
