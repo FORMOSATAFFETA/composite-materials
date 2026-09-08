@@ -129,3 +129,17 @@ a{text-decoration:none;color:inherit}
   .hero-actions .home-btn{width:100%}
   .application-grid{grid-template-columns:1fr}
 }
+
+/* 讓首頁橫幅文字向右留出舒適間距 */
+.home-hero .home-container,
+.hero-inner {
+  width: min(1280px, 92%) !important;
+  margin: 0 auto !important;
+  padding-left: 40px !important;  /* 往右推 40px，與 Header 對齊 */
+  padding-right: 40px !important;
+}
+
+/* 確保文字區塊有適當的最大寬度限制 */
+.hero-copy {
+  max-width: 680px !important;
+}
