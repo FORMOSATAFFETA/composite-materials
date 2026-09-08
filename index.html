@@ -49,7 +49,8 @@
     }
 
     .header-container {
-      width: min(1280px, calc(92% - 40px));
+      width: min(1280px, 92%); /* 讓容器寬度更舒適 */
+      padding: 0 40px;          /* 左右各留 40px 空隙，文字就不會貼在最左邊 */
       height: 100%;
       margin: 0 auto;
       display: flex;
